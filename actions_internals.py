@@ -56,8 +56,8 @@ def assign_local_variable(process: ShellProcess, var_name: str, var_value: str):
     }
 
 def export_variable(process: ShellProcess, var_name: str, var_value: str):
-    process.env_vars[var_name] = var_value
     process.local_vars.pop(var_name, None) 
+    process.env_vars[var_name] = var_value
     return {
         "type": "INTERNAL",
         "animation_steps": [{"step": 1, "action": "UPDATE_PARENT_ENV", "data": process.env_vars}]
