@@ -41,12 +41,13 @@ async def websocket_endpoint(websocket: WebSocket):
             data = await websocket.receive_text()
             payload = json.loads(data)
             command = payload.get("command", "")
+            mode = payload.get("mode", "hardcoded") # Default to hardcoded
 
             if not command:
                 continue
 
             # 4. Route the command and get the animation steps
-            response_packet = route_terminal_command(command, main_process, next_pid)
+            response_packet = route_terminal_command(command, main_process, next_pid, mode) # adding mode
             
             if response_packet["type"] == "FORK_AND_EXEC":
                 next_pid += 1

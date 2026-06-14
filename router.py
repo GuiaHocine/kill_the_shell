@@ -2,10 +2,15 @@ import re
 from models import ShellProcess
 import actions_internals as builtin
 import actions_externals as external
+import llm_kernel
 
-def route_terminal_command(command: str, process: ShellProcess, next_pid: int):
+def route_terminal_command(command: str, process: ShellProcess, next_pid: int , mode: str):
     cmd = command.strip()
     
+
+    if mode == "llm":
+        return llm_kernel.process_with_llm(cmd, process, next_pid)
+        
     # Add to history (unless it's empty)
     if cmd:
         process.history.append(cmd)
