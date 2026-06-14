@@ -1,8 +1,8 @@
-# 🧠 #KillTheAbstraction: Linux VMS Visualizer
+#  #KillTheAbstraction: Linux VMS Visualizer
 
 A real-time, interactive educational visualizer that demystifies the invisible mechanics of the Linux operating system. It translates text commands in a Bash shell into physical, spatial, and animated memory states.
 
-## 🏗️ Architecture
+##  Architecture
 This project uses a decoupled, modern web stack:
 * **Frontend:** React, Vite, Tailwind CSS v4, and React Flow.
 * **Backend:** Python, FastAPI.
@@ -10,7 +10,7 @@ This project uses a decoupled, modern web stack:
 
 ---
 
-## 🚀 Quick Start Installation Guide
+##  Quick Start Installation Guide
 
 To run this project locally, you will need to spin up both the backend server and the frontend development server.
 
@@ -34,3 +34,9 @@ To run this project locally, you will need to spin up both the backend server an
    ```
    npm install
    npm run dev
+
+### USER INTERFACE
+
+<p align="center">
+  <img src="./image.png" alt="System Architecture Schema" width="1200">
+</p>
