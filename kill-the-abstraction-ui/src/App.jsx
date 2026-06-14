@@ -77,18 +77,27 @@ export default function App() {
     }
   };
 
-  const sendCommand = (cmd) => {
-    if (socket && cmd.trim()) {
-      setTerminalHistory(prev => [...prev, `ubuntu@visual-box:~$ ${cmd}`]);
-      socket.send(JSON.stringify({ command: cmd }));
-    }
-  };
 
+  const [kernelMode, setKernelMode] = useState("hardcoded"); // "hardcoded" or "llm"
+  
+  const sendCommand = (cmd) => {  // "updated_send_command function"
+  if (socket && cmd.trim()) {
+    setTerminalHistory(prev => [...prev, `ubuntu@visual-box:~$ ${cmd}`]);
+    // Inject the mode into the WebSocket payload!
+    socket.send(JSON.stringify({ command: cmd, mode: kernelMode }));
+  } };
+
+  
   return (
     <div className="flex h-screen w-full bg-black">
       {/* Left Split: Terminal */}
       <div className="w-[45%] border-r border-gray-800 shadow-2xl z-10">
-        <TerminalPane history={terminalHistory} onCommand={sendCommand} />
+        <TerminalPane 
+          history={terminalHistory} 
+          onCommand={sendCommand} 
+          kernelMode={kernelMode}      
+          setKernelMode={setKernelMode}
+        />
       </div>
       
       {/* Right Split: Memory VMS Viewer */}
